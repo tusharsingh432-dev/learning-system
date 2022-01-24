@@ -35,7 +35,6 @@ function Navbar() {
                                                 </Dropdown.Toggle>
 
                                                 <Dropdown.Menu style={{ margin: "auto" }}>
-                                                    <Dropdown.Item href="/orders">Orders</Dropdown.Item>
                                                     <Dropdown.Item onClick={handleLogout}>Log Out</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>
