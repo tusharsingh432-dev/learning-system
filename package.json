@@ -4,13 +4,15 @@
   "description": "Nbyula Assingment",
   "main": "index.js",
   "scripts": {
-    "start":"nodemon server.js",
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tushar Singh",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2",
-    "nodemon": "^2.0.15"
+    "mongoose": "^6.1.7",
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
   }
 }
