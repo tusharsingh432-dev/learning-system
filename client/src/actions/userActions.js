@@ -6,7 +6,7 @@ export const registerUser = (user) => async dispatch => {
         const response = await axios.post('/api/users/register', { ...user });
         dispatch({ type: "REGISTER_USER_SUCESS" });
         // console.log(response);
-        // dispatch(loginUser(user));
+        dispatch(loginUser(user));
     } catch (e) {
         dispatch({ type: "REGISTER_USER_FAILED", payload: e });
     }
