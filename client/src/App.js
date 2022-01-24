@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
+import EditCourseScreen from './screens/EditCourseScreen';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
@@ -18,6 +19,7 @@ function App() {
           <Route path='/studenthome' component={StudentScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
+          <Route path='/editcourse/:courseid' component={EditCourseScreen} />
         </Switch>
       </BrowserRouter>
     </div>

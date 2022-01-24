@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/userModel');
+const { v4: uuidv4 } = require('uuid');
 
 router.post('/register', async (req, res) => {
     const user = req.body;
     // console.log(user);
-    const newUser = new User(user);
+    const uniqueId = uuidv4();
+    const newUser = new User({
+        ...user,
+        uniqueId
+    });
     try {
         const response = await newUser.save();
         // console.log(response);
@@ -29,7 +34,8 @@ router.post('/login', async (req, res) => {
             email: response[0].email,
             isTeacher: response[0].isTeacher,
             createdAt: response[0].createdAt,
-            updatedAt: response[0].updatedAt
+            updatedAt: response[0].updatedAt,
+            uniqueId: response[0].uniqueId
         }
         // console.log(newUser);
         res.send(newUser)

@@ -15,6 +15,10 @@ const userSchema = mongoose.Schema({
         type: 'boolean',
         default: false,
         require
+    },
+    uniqueId: {
+        type: 'string',
+        require
     }
 }, {
     timestamps: true
