@@ -1,12 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { createQuizReducer, editQuizReducer } from './reducers/quizReducers';
 import { loginUserReducer, registerUserReducer } from './reducers/userReducers';
 import { getCourseReducer } from './reducers/courseReducers';
 const finalReducer = combineReducers({
     registerUserReducer: registerUserReducer,
     loginUserReducer: loginUserReducer,
-    getCourseReducer: getCourseReducer
+    getCourseReducer: getCourseReducer,
+    createQuizReducer: createQuizReducer,
+    editQuizReducer: editQuizReducer
 })
 
 const userInfo = localStorage.getItem('userInfo')

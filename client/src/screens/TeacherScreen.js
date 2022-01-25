@@ -62,11 +62,11 @@ export default function TeacherScreen() {
                                             <a href="#" style={{ marginRight: "10px", color: 'red' }}>
                                                 <i className="fas fa-trash-alt"></i>
                                             </a>
-                                            <a href='#'>
+                                            <a href={`/editquiz/${course.quiz[0]}`}>
                                                 <i className="fas fa-edit"></i>
                                             </a>
                                         </div>
-                                        : <a href="#" style={{ color: 'green' }}><i className="fas fa-plus-square"></i></a>}
+                                        : <a href={`/addquiz/${course.courseId}`} style={{ color: 'green' }}><i className="fas fa-plus-square"></i></a>}
                                 </td>
                                 <td>
                                     <a href="#" style={{ marginRight: "10px", color: 'red' }}>
