@@ -22,7 +22,6 @@ export default function StudentProfite() {
 
     return <div className='container'>
         <div className='row'>
-            <h4>incomplete Page</h4>
             <h3>Name: {' ' + loginState.user.name}</h3>
             <h4>Email: {' ' + loginState.user.email}</h4>
             {/* {passedCourses && passedCourses.map((course) => {
