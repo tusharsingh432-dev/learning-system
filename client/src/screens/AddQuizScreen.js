@@ -30,8 +30,8 @@ export default function AddQuizScreen({ match }) {
     function handleCreateQuiz() {
         if (title === '') { alert('Please enter Title'); return; }
         if (questions.length === 0) { alert('Please enter Question'); return; }
-        if (passingMarks === '') { alert('Please enter Passing Marks'); return; }
-        if (totalMarks === '') { alert('Please enter Total Marks'); return; }
+        if (passingMarks === '' || parseInt(passingMarks) < 1) { alert('Please enter vaild Passing Marks'); return; }
+        if (totalMarks === '' || parseInt(totalMarks) < 1) { alert('Please enter valid Total Marks'); return; }
         if (parseInt(totalMarks) !== parseInt(currentTotalMarks)) { alert('Total Marks and total of questions marks must be equal'); console.log(parseInt(totalMarks), parseInt(currentTotalMarks)); return; }
         if (parseInt(passingMarks) > parseInt(totalMarks)) { alert('Passing Marks must be less than total marks'); return; }
 
@@ -48,7 +48,7 @@ export default function AddQuizScreen({ match }) {
 
     function handleAddQuestion() {
         if (question === '') { alert('Please enter a Statement'); return; }
-        if (marks === '') { alert('Please enter Marks'); return; }
+        if (marks === '' || parseInt(marks) > 10 || parseInt(marks) < 1) { alert('Please enter Valid Marks'); return; }
         if (option1.name === '') { alert('Please enter all Options'); return; }
         if (option2.name === '') { alert('Please enter all Options'); return; }
         if (option3.name === '') { alert('Please enter all Options'); return; }
@@ -80,10 +80,10 @@ export default function AddQuizScreen({ match }) {
                     onChange={(e) => { setTitle(e.target.value) }}
                 />
                 <input type="number" placeholder="Total Marks" className="form-control mt-2" required value={totalMarks}
-                    onChange={(e) => { setTotalMarks(e.target.value) }}
+                    onChange={(e) => { setTotalMarks(e.target.value) }} min="0"
                 />
                 <input type="number" placeholder="Passing Marks" className="form-control mt-2" required value={passingMarks}
-                    onChange={(e) => { setPassingMarks(e.target.value) }}
+                    onChange={(e) => { setPassingMarks(e.target.value) }} min="0"
                 />
                 <p className="mt-2">Add Questions before creating quiz</p>
                 <button className="btn btn-primary" type="submit" onClick={handleCreateQuiz}>Create Quiz</button>

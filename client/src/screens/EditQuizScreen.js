@@ -61,8 +61,8 @@ export default function EditQuizScreen({ match }) {
         setCurrentTotalMarks(sum);
         if (title === '') { alert('Please enter Title'); return; }
         if (questions.length === 0) { alert('Please enter Question'); return; }
-        if (passingMarks === '') { alert('Please enter Passing Marks'); return; }
-        if (totalMarks === '') { alert('Please enter Total Marks'); return; }
+        if (passingMarks === '' || parseInt(passingMarks) < 1) { alert('Please enter vaild Passing Marks'); return; }
+        if (totalMarks === '' || parseInt(totalMarks) < 1) { alert('Please enter valid Total Marks'); return; }
         if (parseInt(totalMarks) !== parseInt(currentTotalMarks)) { alert('Total Marks and total of questions marks must be equal'); console.log(parseInt(totalMarks), parseInt(currentTotalMarks)); return; }
         if (parseInt(passingMarks) > parseInt(totalMarks)) { alert('Passing Marks must be less than total marks'); return; }
 
