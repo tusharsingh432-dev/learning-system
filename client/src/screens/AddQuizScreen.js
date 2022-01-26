@@ -95,7 +95,7 @@ export default function AddQuizScreen({ match }) {
                     onChange={(e) => { setQuestion(e.target.value) }}
                 />
                 <input type="number" placeholder="Marks" className="form-control mt-2" required value={marks}
-                    onChange={(e) => { setMarks(e.target.value) }}
+                    onChange={(e) => { setMarks(e.target.value) }} max="10" min="1"
                 />
                 <div className='row'>
                     <div className='col-md-4'>

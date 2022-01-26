@@ -78,7 +78,7 @@ export default function EditQuizScreen({ match }) {
 
     function handleAddQuestion() {
         if (question === '') { alert('Please enter a Statement'); return; }
-        if (marks === '') { alert('Please enter Marks'); return; }
+        if (marks === '' || parseInt(marks) > 10 || parseInt(marks) < 1) { alert('Please enter Valid Marks'); return; }
         if (option1.name === '') { alert('Please enter all Options'); return; }
         if (option2.name === '') { alert('Please enter all Options'); return; }
         if (option3.name === '') { alert('Please enter all Options'); return; }
@@ -125,7 +125,7 @@ export default function EditQuizScreen({ match }) {
                     onChange={(e) => { setQuestion(e.target.value) }}
                 />
                 <input type="number" placeholder="Marks" className="form-control mt-2" required value={marks}
-                    onChange={(e) => { setMarks(e.target.value) }}
+                    onChange={(e) => { setMarks(e.target.value) }} max="10" min="1"
                 />
                 <div className='row'>
                     <div className='col-md-4'>
