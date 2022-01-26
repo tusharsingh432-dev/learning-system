@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCourses } from '../actions/courseActions';
+import { initExam } from '../actions/examActions';
 
 export default function StudentScreen() {
 
@@ -37,11 +38,11 @@ export default function StudentScreen() {
                             <tr key={course.courseId}>
                                 <td>{course.name}</td>
                                 <td>
-                                    {course.quiz.length > 0
-                                        ? <a href="#" className='btn btn-primary'>
-                                            Take
-                                        </a>
-                                        : <a className='btn btn-secondary'>Unavailable</a>
+                                    {loginState.user.passedCourses.includes(course.courseId)
+                                        ? <div className="btn btn-success">Passed</div>
+                                        : course.quiz.length > 0
+                                            ? <a href={`/takequiz/${course.quiz[0]}`} onClick={e => { dispatch(initExam()) }} className='btn btn-primary'>Take</a>
+                                            : <div className='btn btn-secondary'>Unavailable</div>
                                     }
                                 </td>
                             </tr>

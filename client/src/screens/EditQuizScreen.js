@@ -41,13 +41,6 @@ export default function EditQuizScreen({ match }) {
         }
         fetchData();
     }, [])
-    // useEffect(() => {
-    //     let sum = 0;
-    //     questions.forEach((quest) => {
-    //         sum += quest.marks;
-    //     })
-    //     setCurrentTotalMarks(sum);
-    // }, [questions])
 
     function handleDeleteQuestion(e) {
         // setCurrentTotalMarks(currentTotalMarks - ques.marks);
@@ -124,6 +117,7 @@ export default function EditQuizScreen({ match }) {
                 />
                 <p className="mt-2">Add Questions before creating quiz</p>
                 <button className="btn btn-primary" type="submit" onClick={handleCreateQuiz}>Update Quiz</button>
+                <a href='/teacherhome' className="btn btn-primary" style={{ marginLeft: '20px' }}>Cancel</a>
             </div>
             <div className="col-md-5 mt-5 shadow p-3 mb-5 bg-white rounded" style={{ marginLeft: "30px" }}>
                 <h3>Add Question</h3>
@@ -190,32 +184,35 @@ export default function EditQuizScreen({ match }) {
                     Add Question
                 </button>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Statement</td>
-                        <td>Marks</td>
-                        <td>Option 1</td>
-                        <td>Option 2</td>
-                        <td>Option 3</td>
-                        <td>Option 4</td>
-                        <td>Actions</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {questions.map(curQuestion =>
-                        <tr key={curQuestion.question}>
-                            <td>{curQuestion.question}</td>
-                            <td>{curQuestion.marks}</td>
-                            <td>{curQuestion.option1.name + ' [' + curQuestion.option1.isCorrect + ']'}</td>
-                            <td>{curQuestion.option2.name + ' [' + curQuestion.option2.isCorrect + ']'}</td>
-                            <td>{curQuestion.option3.name + ' [' + curQuestion.option3.isCorrect + ']'}</td>
-                            <td>{curQuestion.option4.name + ' [' + curQuestion.option4.isCorrect + ']'}</td>
-                            <td onClick={handleDeleteQuestion} value={curQuestion.question}><i className="fas fa-trash-alt"></i></td>
+            <div className='col-md-11'>
+                <table className="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Statement</td>
+                            <td>Marks</td>
+                            <td>Option 1</td>
+                            <td>Option 2</td>
+                            <td>Option 3</td>
+                            <td>Option 4</td>
+                            <td>Actions</td>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {questions.map(curQuestion =>
+                            <tr key={curQuestion.question}>
+                                <td>{curQuestion.question}</td>
+                                <td>{curQuestion.marks}</td>
+                                <td>{curQuestion.option1.name + ' [' + curQuestion.option1.isCorrect + ']'}</td>
+                                <td>{curQuestion.option2.name + ' [' + curQuestion.option2.isCorrect + ']'}</td>
+                                <td>{curQuestion.option3.name + ' [' + curQuestion.option3.isCorrect + ']'}</td>
+                                <td>{curQuestion.option4.name + ' [' + curQuestion.option4.isCorrect + ']'}</td>
+                                <td onClick={handleDeleteQuestion} value={curQuestion.question}><i className="fas fa-trash-alt"></i></td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+
 
 
         </div>

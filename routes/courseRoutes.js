@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Course = require('../models/courseModel');
+const Quiz = require('../models/quizModel');
+const Question = require('../models/questionModel');
 const { v4: uuidv4 } = require('uuid');
 
 router.post('/create', async (req, res) => {
@@ -37,7 +39,7 @@ router.post('/getcoursebyid', async (req, res) => {
     console.log(id);
     try {
         const response = await Course.findOne({ courseId: id });
-        console.log(response)
+        // console.log(response)
         res.send(response);
     } catch (err) {
         res.status(404).json({ message: err });
@@ -50,6 +52,22 @@ router.post('/update', async (req, res) => {
         const response = await Course.findOne({ courseId: id });
         response.name = name;
         response.save();
+        res.send('Success');
+    } catch (err) {
+        res.status(404).json({ message: err });
+    }
+})
+
+router.post('/delete', async (req, res) => {
+    const { id } = req.body;
+    console.log(id + ' courseId');
+    try {
+        const quiz = await Quiz.findOne({ courseId: id });
+        if (quiz != null) {
+            await Question.deleteMany({ quizId: quiz.quizId });
+            await Quiz.deleteOne({ courseId: id });
+        }
+        await Course.deleteOne({ courseId: id });
         res.send('Success');
     } catch (err) {
         res.status(404).json({ message: err });

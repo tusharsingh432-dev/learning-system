@@ -32,3 +32,21 @@ export const logoutUser = () => dispatch => {
     localStorage.removeItem('userInfo');
     window.location.href = '/login';
 }
+
+export const passUser = (courseId) => async (dispatch, getState) => {
+    dispatch({ type: "PASS_USER_REQUEST" });
+    // console.log('action');
+    console.log(courseId);
+    try {
+        const loginState = getState().loginUserReducer;
+        // console.log();
+        const response = await axios.post('/api/users/passUser', { userId: loginState.user.uniqueId, courseId });
+        let userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        if (!userInfo.user.passedCourses.includes(courseId)) userInfo.user.passedCourses.push(courseId);
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        dispatch({ type: "PASS_USER_SUCESS" });
+        // console.log(response);
+    } catch (e) {
+        dispatch({ type: "PASS_USER_FAILED", payload: e });
+    }
+}

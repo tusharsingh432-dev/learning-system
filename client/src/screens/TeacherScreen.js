@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCourses } from '../actions/courseActions';
+import { deleteCourses, getAllCourses } from '../actions/courseActions';
+import { deleteQuiz } from '../actions/quizActions';
 export default function TeacherScreen() {
 
     const dispatch = useDispatch();
@@ -59,7 +60,7 @@ export default function TeacherScreen() {
                                 <td>
                                     {course.quiz.length > 0
                                         ? <div>
-                                            <a href="#" style={{ marginRight: "10px", color: 'red' }}>
+                                            <a onClick={() => { dispatch(deleteQuiz(course.courseId)) }} style={{ marginRight: "10px", color: 'red' }}>
                                                 <i className="fas fa-trash-alt"></i>
                                             </a>
                                             <a href={`/editquiz/${course.quiz[0]}`}>
@@ -69,7 +70,7 @@ export default function TeacherScreen() {
                                         : <a href={`/addquiz/${course.courseId}`} style={{ color: 'green' }}><i className="fas fa-plus-square"></i></a>}
                                 </td>
                                 <td>
-                                    <a href="#" style={{ marginRight: "10px", color: 'red' }}>
+                                    <a onClick={() => { dispatch(deleteCourses(course.courseId)) }} style={{ marginRight: "10px", color: 'red' }}>
                                         <i className="fas fa-trash-alt"></i>
                                     </a>
                                     <a href={`/editcourse/${course.courseId}`}>

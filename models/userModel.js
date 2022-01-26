@@ -19,7 +19,8 @@ const userSchema = mongoose.Schema({
     uniqueId: {
         type: 'string',
         require
-    }
+    },
+    passedCourses: []
 }, {
     timestamps: true
 })

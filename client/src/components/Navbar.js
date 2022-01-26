@@ -35,6 +35,7 @@ function Navbar() {
                                                 </Dropdown.Toggle>
 
                                                 <Dropdown.Menu style={{ margin: "auto" }}>
+                                                    {loginState.isteacher ? <></> : <Dropdown.Item href='/studentprofile'>Profile</Dropdown.Item>}
                                                     <Dropdown.Item onClick={handleLogout}>Log Out</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>

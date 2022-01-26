@@ -35,13 +35,30 @@ router.post('/login', async (req, res) => {
             isTeacher: response[0].isTeacher,
             createdAt: response[0].createdAt,
             updatedAt: response[0].updatedAt,
-            uniqueId: response[0].uniqueId
+            uniqueId: response[0].uniqueId,
+            passedCourses: response[0].passedCourses,
         }
         // console.log(newUser);
         res.send(newUser)
     } catch (err) {
         console.error(err);
         res.status(404).json({ message: err });
+    }
+})
+
+router.post('/passUser', async (req, res) => {
+    const { userId, courseId } = req.body;
+    console.log("passCalled");
+    try {
+        const user = await User.findOne({ uniqueId: userId });
+        if (!user.passedCourses.includes(courseId)) {
+            user.passedCourses.push(courseId);
+            user.save();
+        }
+        res.send("Success");
+    } catch (err) {
+        res.status(404).json({ message: err });
+        console.log(err);
     }
 })
 

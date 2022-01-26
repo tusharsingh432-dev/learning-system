@@ -60,9 +60,9 @@ router.post('/getById', async (req, res) => {
 
 router.post('/update', async (req, res) => {
     const { quiz, questions, courseId } = req.body;
-    console.log(quiz);
-    console.log(questions);
-    console.log(courseId);
+    // console.log(quiz);
+    // console.log(questions);
+    // console.log(courseId);
     try {
         const response = await Quiz.findOne({ courseId: courseId });
         response.name = quiz.name;
@@ -79,6 +79,36 @@ router.post('/update', async (req, res) => {
             })
             const savedQuestion = await newQuestion.save();
         })
+        res.send('Success');
+    } catch (err) {
+        res.status(404).json({ message: err });
+    }
+})
+
+router.post('/delete', async (req, res) => {
+    const { courseId } = req.body;
+    // console.log(quiz);
+    // console.log(questions);
+    // console.log(courseId);
+    try {
+        const response = await Quiz.findOne({ courseId: courseId });
+        // response.name = quiz.name;
+        // response.totalMarks = quiz.totalMarks;
+        // response.passingMarks = quiz.passingMarks;
+        // response.save();
+        await Question.deleteMany({ quizId: response.quizId });
+        // questions.map(async (question) => {
+        //     const newQuestion = new Question({
+        //         ...question,
+        //         questionId: uuidv4(),
+        //         quizId: response.quizId
+        //     })
+        //     const savedQuestion = await newQuestion.save();
+        // })
+        await Quiz.deleteOne({ courseId: courseId });
+        const course = await Course.findOne({ courseId: courseId });
+        course.quiz = [];
+        course.save();
         res.send('Success');
     } catch (err) {
         res.status(404).json({ message: err });

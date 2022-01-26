@@ -43,3 +43,23 @@ export const loginUserReducer = (state = { isLogin: false }, action) => {
         default: return state
     }
 }
+
+export const passUserReducer = (state = {}, action) => {
+    switch (action.type) {
+        case "PASS_USER_REQUEST": return {
+            loading: true
+        }
+
+        case "PASS_USER_SUCESS": return {
+            loading: false,
+            sucess: true
+        }
+
+        case "PASS_USER_FAILED": return {
+            loading: false,
+            error: action.payload
+        }
+
+        default: return state
+    }
+}
