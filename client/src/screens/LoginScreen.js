@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Error from '../components/Error';
+import Success from '../components/Success'
 import { loginUser } from '../actions/userActions';
 
 export default function LoginScreen() {
@@ -19,8 +21,13 @@ export default function LoginScreen() {
         // console.log(user);
         dispatch(loginUser(user));
     }
-
+    const loginState = useSelector(state => state.loginUserReducer);
+    const { isLogin, isError, loading } = loginState;
     return <div>
+
+        {isLogin && <Success message="Login Successful" />}
+        {isError && <Error error="User Not Found" />}
+
         <div className="row justify-content-center mt-5">
             <div className="col-md-5 mt-5 shadow p-3 mb-5 bg-white rounded">
                 <h2>Login</h2>

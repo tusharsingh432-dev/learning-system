@@ -24,7 +24,9 @@ export const registerUserReducer = (state = {}, action) => {
 export const loginUserReducer = (state = { isLogin: false }, action) => {
     switch (action.type) {
         case "LOGIN_USER_REQUEST": return {
-            loading: true
+            loading: true,
+            isLogin: false,
+            isError: false
         }
         case "LOGIN_USER_SUCCESS": return {
             ...state,

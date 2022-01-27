@@ -36,7 +36,7 @@ router.get('/getCourses', async (req, res) => {
 
 router.post('/getcoursebyid', async (req, res) => {
     const { id } = req.body;
-    console.log(id);
+    // console.log(id);
     try {
         const response = await Course.findOne({ courseId: id });
         // console.log(response)
@@ -60,7 +60,7 @@ router.post('/update', async (req, res) => {
 
 router.post('/delete', async (req, res) => {
     const { id } = req.body;
-    console.log(id + ' courseId');
+    // console.log(id + ' courseId');
     try {
         const quiz = await Quiz.findOne({ courseId: id });
         if (quiz != null) {

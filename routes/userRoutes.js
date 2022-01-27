@@ -5,7 +5,9 @@ const { v4: uuidv4 } = require('uuid');
 
 router.post('/register', async (req, res) => {
     const user = req.body;
-    // console.log(user);
+    console.log(user);
+    const findUser = await User.find({ email: user.email });
+    if (findUser.length > 0) { res.status(404).json({ message: 'Email already in use' }); }
     const uniqueId = uuidv4();
     const newUser = new User({
         ...user,
@@ -16,7 +18,7 @@ router.post('/register', async (req, res) => {
         // console.log(response);
         res.send('Sucess');
     } catch (err) {
-        console.error(err);
+        // console.error(err);
         res.status(404).json({ message: err });
     }
 })
@@ -41,7 +43,7 @@ router.post('/login', async (req, res) => {
         // console.log(newUser);
         res.send(newUser)
     } catch (err) {
-        console.error(err);
+        // console.error(err);
         res.status(404).json({ message: err });
     }
 })

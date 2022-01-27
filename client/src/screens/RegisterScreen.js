@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { registerUser } from '../actions/userActions';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import Error from '../components/Error';
+import Success from '../components/Success';
 export default function RegisterScreen() {
 
     const dispatch = useDispatch();
@@ -9,6 +11,9 @@ export default function RegisterScreen() {
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [role, setRole] = useState(false);
+
+    const registerState = useSelector(state => state.registerUserReducer);
+    const { loading, error, success } = registerState;
 
     function handleRegister(e) {
 
@@ -31,6 +36,8 @@ export default function RegisterScreen() {
 
     return (
         <div>
+            {success && <Success message="Login Successful" />}
+            {error && <Error error="Something went wrong" />}
             <div className="row justify-content-center mt-5">
                 <div className="col-md-5 mt-5 shadow p-3 mb-5 bg-white rounded">
                     <h2>Registration</h2>
