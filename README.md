@@ -1,7 +1,7 @@
 
 # Learning System
 
-https://learning-system-app.herokuapp.com/
+https://learning-system.up.railway.app/login
 
 A teacher is supposed to add, remove, edit, and delete courses. For each course, they
 will be able to create one quiz only, based on a set of questions and their respective
